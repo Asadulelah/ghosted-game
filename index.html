@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHOSTED - an agency simulator. painfully accurate.</title>
+<meta name="description" content="Run a tiny agency. Take the calls, build the demos, schedule the decision calls - and when the voice tells you to keep working, rest anyway. Reach $10K before burnout reaches you.">
+<meta property="og:title" content="GHOSTED - an agency simulator">
+<meta property="og:description" content="Painfully accurate. Every way a deal dies in this game is a way a deal really died.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B0A08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700&family=Sometype+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <div class="iwrap">
+    <div class="ik">AN AGENCY SIMULATOR · PAINFULLY ACCURATE</div>
+    <h1>GHOST<i>ED.</i></h1>
+    <p>You have a laptop, an empty pipeline, and a number in your head: <b>$10,000</b>.<br><br>
+    Prospects will love everything and vanish when money is mentioned. A skeptic will call your deck
+    <b>"AI slop."</b> A negotiator will haggle to a match-point and evaporate if you leave the thread open.
+    Every death in this game is a way a deal really dies.<br><br>
+    And when you try to rest, a voice will tell you to keep working. <b>What you do about the voice
+    decides how this ends.</b></p>
+    <button class="ibtn" id="startBtn">CLOCK IN</button>
+    <div class="ifoot">3 energy per day · burnout at 100 ends you · sound on recommended · every name is fiction · nothing stored</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="top">
+    <div class="logo">GHOST<i>ED</i></div>
+    <div class="tag">REACH $10K BEFORE BURNOUT REACHES YOU</div>
+    <div class="spacer"></div>
+    <button class="tgl" id="sndTgl">SOUND OFF</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="l">DAY</div><div class="v" id="stDay">1</div></div>
+    <div class="stat"><div class="l">CASH / $10K</div><div class="v" id="stCash">$0</div><div class="bar"><div id="cashBar"></div></div></div>
+    <div class="stat"><div class="l">ENERGY</div><div class="v" id="stEnergy">●●●</div></div>
+    <div class="stat"><div class="l">REPUTATION</div><div class="v" id="stRep">10</div></div>
+    <div class="stat"><div class="l">BURNOUT</div><div class="v">&nbsp;</div><div class="bar"><div id="burnBar"></div></div></div>
+    <div class="stat"><div class="l">STEEL</div><div class="v gold" id="stSteel">0</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="panel actions">
+      <div class="ph">THE DESK <span>1 ⚡ EACH</span></div>
+      <div class="acts">
+        <button class="act" data-act="outreach"><b>OUTREACH</b><span>send the DMs. face the void.</span></button>
+        <button class="act" data-act="content"><b>POST CONTENT</b><span>slow. compounds. streaks pay.</span></button>
+        <button class="act" data-act="polish"><b>POLISH THE DECK</b><span>changes nothing. feels nice.</span></button>
+        <button class="act" data-act="rest"><b>REST</b><span>the voice will have opinions.</span></button>
+      </div>
+      <button class="endday" id="endDay">END THE DAY →</button>
+    </div>
+
+    <div class="panel">
+      <div class="ph">PIPELINE <span id="pipeCount">0 LIVE</span></div>
+      <div id="pipeline"></div>
+    </div>
+
+    <div class="panel">
+      <div class="ph">THE LOG</div>
+      <div id="log"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DECISION CALL MODAL -->
+<div class="modal" id="dcModal"><div class="mwin">
+  <h2>Proposal ready.</h2>
+  <p>For <b class="gold" id="dcName"></b>. One question decides this deal's fate, and it isn't the price:</p>
+  <div class="mbtns">
+    <button class="mbtn" id="dcYes"><b>SCHEDULE THE DECISION CALL.</b><br>The proposal gets a 30-minute walk-through. The thread cannot drift.</button>
+    <button class="mbtn" id="dcNo">Just send it. It's good - it'll speak for itself.<br><i>(it will not speak. it cannot speak. it is a PDF.)</i></button>
+  </div>
+</div></div>
+
+<!-- THE VOICE -->
+<div class="modal" id="voiceModal"><div class="mwin">
+  <p style="letter-spacing:.24em;font-size:10px">YOU SIT BACK. THE ROOM IS QUIET. AND THEN -</p>
+  <div id="voiceLine">"you should be working."</div>
+  <div class="mbtns">
+    <button class="mbtn" id="vRest"><b>REST ANYWAY.</b><br>burnout drops hard · <b>+1 STEEL</b> (every steel = +2% close rate, forever)</button>
+    <button class="mbtn" id="vWork">Fine. One more task.<br><i>+1 energy now · the bill arrives tomorrow, with interest</i></button>
+  </div>
+</div></div>
+
+<!-- END -->
+<div class="modal" id="endModal"><div class="mwin">
+  <h2 id="endTitle"></h2>
+  <p id="endBody"></p>
+  <div class="mbtns">
+    <button class="mbtn" id="shareEnd"><b>DOWNLOAD RUN CARD</b></button>
+    <button class="mbtn" id="againEnd">CLOCK IN AGAIN</button>
+  </div>
+  <p style="margin-top:18px;font-size:10.5px;color:var(--faint)">open source · <a href="https://github.com/Asadulelah/ghosted-game" style="color:var(--dim)">github.com/Asadulelah/ghosted-game</a> · built by <a href="https://github.com/Asadulelah" style="color:var(--dim)">Asadulelah</a></p>
+</div></div>
+
+<script src="js/data.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
